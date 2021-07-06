@@ -120,6 +120,7 @@ def encrypt_py(py_files: list):
 
     with TemporaryDirectory() as td:
         total_count = len(py_files)
+        cwd = os.getcwd()
         for i, py_file in enumerate(py_files):
             try:
                 dir_name = os.path.dirname(py_file)
@@ -142,7 +143,7 @@ def encrypt_py(py_files: list):
                 temp_c = py_file.replace(".py", ".c")
                 if os.path.exists(temp_c):
                     os.remove(temp_c)
-
+        os.chdir(cwd)
         return encrypted_py
 
 
